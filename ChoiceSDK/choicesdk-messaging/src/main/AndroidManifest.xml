@@ -5,7 +5,7 @@
     <application>
         <service
             android:name="at.bluesource.choicesdk.messaging.gms.GmsMessagingService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -13,7 +13,7 @@
 
         <service
             android:name="at.bluesource.choicesdk.messaging.hms.HmsMessagingService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
             </intent-filter>
