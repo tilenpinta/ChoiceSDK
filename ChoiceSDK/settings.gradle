@@ -1,5 +1,4 @@
 include ':choicesdk-analytics'
-include ':choicesdk-app'
 include ':choicesdk-core'
 include ':choicesdk-location'
 include ':choicesdk-maps'
