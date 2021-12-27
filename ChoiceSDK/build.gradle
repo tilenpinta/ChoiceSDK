@@ -57,7 +57,7 @@ allprojects {
     repositories {
         google()
         gradlePluginPortal()
-
+        mavenCentral()
         maven { url 'https://developer.huawei.com/repo/' }
 
         maven {
