@@ -7,7 +7,7 @@ plugins {
 
 apply plugin: 'com.jaredsburrows.license'
 apply from: "../licenseCheck.gradle"
-apply from: 'release.gradle'
+//apply from: 'release.gradle'
 apply plugin: "com.vanniktech.maven.publish"
 
 android {
