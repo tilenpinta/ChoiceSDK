@@ -1,8 +1,8 @@
-include ':choicesdk-signin'
-include ':choicesdk-messaging'
-include ':choicesdk-location'
-include ':choicesdk-maps'
-include ':choicesdk-core'
 include ':choicesdk-analytics'
 include ':choicesdk-app'
-rootProject.name = "ChoiceSDK"
+include ':choicesdk-core'
+include ':choicesdk-location'
+include ':choicesdk-maps'
+include ':choicesdk-messaging'
+include ':choicesdk-signin'
+//rootProject.name = "ChoiceSDK"
