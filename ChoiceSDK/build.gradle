@@ -43,6 +43,8 @@ buildscript {
         // HMS
         classpath 'com.huawei.agconnect:agcp:1.5.2.300'
 
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
+
     }
 }
 

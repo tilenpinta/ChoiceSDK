@@ -5,6 +5,7 @@ apply plugin: 'com.huawei.agconnect'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.jaredsburrows.license'
 apply from: "../licenseCheck.gradle"
+apply plugin: "com.vanniktech.maven.publish"
 
 // Load keystore.properties file
 def keystorePropertiesFile = rootProject.file("../keystore.properties")
