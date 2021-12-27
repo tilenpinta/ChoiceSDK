@@ -1,0 +1,71 @@
+afterEvaluate {
+    task androidSourcesJar(type: Jar) {
+        archiveClassifier.set('sources')
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    }
+
+    artifacts {
+        archives androidSourcesJar
+    }
+
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId project.groupId
+                artifactId project.name
+                version project.sdkVersionName
+
+                artifact androidSourcesJar
+
+                pom {
+                    name = "Choice SDK Analytics"
+                    description = "A SDK that aims to wrap similar functionalities from HMS and GMS services to one common interface."
+                    url = "https://github.com/bluesource/ChoiceSDK"
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = "bluesource"
+                            name = "bluesource - mobile solutions gmbh"
+                            email = "https://www.bluesource.at"
+                        }
+                    }
+
+                    scm {
+                        connection = 'scm:git:github.com/bluesource/choicesdk.git'
+                        developerConnection = 'scm:git:ssh://github.com/bluesource/choicesdk.git'
+                        url = 'https://github.com/bluesource/choicesdk/tree/master'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name "Gitlab"
+                url "https://gitlab.bluesource.at/api/v4/projects/512/packages/maven"
+                credentials(HttpHeaderCredentials) {
+                    name = 'Job-Token'
+                    value = System.getenv("CI_JOB_TOKEN")
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
+            }
+        }
+    }
+
+    signing {
+        useInMemoryPgpKeys(System.getenv('SIGNING_KEY_ID'), System.getenv('SIGNING_KEY'), System.getenv('SIGNING_PASSWORD'))
+        sign publishing.publications
+    }
+}

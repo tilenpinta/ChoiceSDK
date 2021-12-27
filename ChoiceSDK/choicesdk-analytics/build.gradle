@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
+}
+
+apply plugin: 'com.jaredsburrows.license'
+apply from: "../licenseCheck.gradle"
+apply from: 'release.gradle'
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 31
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    resourcePrefix 'choicesdk'
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "bluesource-${project.name}-${variant.name}-${project.sdkVersionName}.aar"
+        }
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    // RX
+    api "io.reactivex.rxjava3:rxjava:$rxjava_version"
+    api "io.reactivex.rxjava3:rxandroid:$rxandroid_version"
+
+    // RxRelay
+    implementation "com.jakewharton.rxrelay3:rxrelay:$rxrelay_version"
+
+    // ChoiceSDK Core
+    api project(":choicesdk-core")
+
+    // GMS
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // HMS
+    implementation 'com.huawei.hms:hianalytics:6.0.0.300'
+}
+
+
+dokkaHtml {
+    outputDirectory.set(file("$buildDir/dokka"))
+    dokkaSourceSets {
+        configureEach {
+            includeNonPublic.set(true)
+            skipEmptyPackages.set(true)
+            skipDeprecated.set(true)
+            reportUndocumented.set(true)
+            jdkVersion.set(8)
+            sourceRoots.from(file("src"))
+        }
+    }
+}
+
