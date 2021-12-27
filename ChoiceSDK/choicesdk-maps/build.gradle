@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'org.jetbrains.dokka'
+    id 'maven-publish'
 }
 
 apply plugin: 'com.jaredsburrows.license'
@@ -11,11 +12,11 @@ apply from: 'release.gradle'
 apply plugin: "com.vanniktech.maven.publish"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 31
 
         consumerProguardFiles "consumer-rules.pro"
     }
