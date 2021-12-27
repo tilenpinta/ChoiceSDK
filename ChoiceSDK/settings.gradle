@@ -5,4 +5,4 @@ include ':choicesdk-location'
 include ':choicesdk-maps'
 include ':choicesdk-messaging'
 include ':choicesdk-signin'
-//rootProject.name = "ChoiceSDK"
+rootProject.name = "ChoiceSDK"
