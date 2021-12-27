@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
 
+buildscript {
     // Get build number from CI
     def buildNumber = 0
     if (System.getenv().CI_PIPELINE_ID) {
@@ -26,7 +26,7 @@ buildscript {
     repositories {
         google()
         gradlePluginPortal()
-
+        mavenCentral()
         maven { url 'https://developer.huawei.com/repo/' }
     }
 
